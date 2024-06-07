@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react"
 import API from "../components/api/api"
-
+import SearchBar from "../components/SearchBar/SearchBar"
+import MovieList from "../components/MovieList/MoviesList"
 
 export default function MoviePage() {
     const [movies, setMovies] = useState([])
     const [error, setError] = useState(false)
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         async function getMovies() {
             try {
         setError(false)
-        const data = await API(query)
+        const data = await API(search)
         setMovies(data.data.results)
     } catch (error) {
         setError(true)
@@ -18,23 +20,21 @@ export default function MoviePage() {
     }
 }
  getMovies()   
-})
+    },[search])
+    
+    const handleSubmit = async (searchQuery) => {
+        setMovies([])
+    setSearch(searchQuery)
+
+    }
 
     return (
         <>
     <p>Movies</p>
-            <form  >
-          <input
-            
-      type="text"
-      autoComplete="off"
-      autoFocus
-     placeholder="Search the best movies"
-    name='search'
-    />
-                <button type="submit">Search</button>
-          
-  </form>
+            <SearchBar
+            submit={handleSubmit}
+            /> 
+            <MovieList movies={movies}/>
         </>
     )
 }
