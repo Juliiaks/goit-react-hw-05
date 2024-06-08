@@ -1,5 +1,5 @@
 
-import { useParams } from "react-router-dom"
+import { useParams, Link, Outlet } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { getSingleMovieApi } from "../components/api/api";
 
@@ -31,10 +31,24 @@ export default function MovieDetailsPage() {
                 <h2>OVERVIEW</h2>
                 <p>{movie.overview}</p>
                 <h2>Average</h2>
-                 <p>{movie.vote_average}</p>
+                <p>{movie.vote_average}</p>
+                <h2>Genres</h2>
+                <ul>
+                    {movie.genres.map(({ id, name }) => (
+                        <li key={id}>
+                           <p> {name}</p>
+                        </li>
+                    ))}
+                </ul>
+                 
             </div>)
-          }
-           
+            }
+
+            <nav>
+            <Link to="cast">CAST</Link>
+            <Link to="reviews">REVIEWS</Link>
+            </nav>
+            <Outlet />
         </div>
     )
 }
