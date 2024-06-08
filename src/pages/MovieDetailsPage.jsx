@@ -1,5 +1,5 @@
 
-import { useParams, Link, Outlet } from "react-router-dom"
+import { useParams, Link, Outlet, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { getSingleMovieApi } from "../components/api/api";
 
@@ -21,10 +21,14 @@ export default function MovieDetailsPage() {
         }
        
      getData()
-    },[movieId])
+    }, [movieId])
+    
+    const location = useLocation()
+    console.log(location);
     
     return (
         <div>
+            <Link to={location.state}> Go back</Link>
             {movie&&(<div>
                 <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
  <p>{movie.original_title}</p>
@@ -45,7 +49,7 @@ export default function MovieDetailsPage() {
             }
 
             <nav>
-            <Link to="cast">CAST</Link>
+            <Link to="cast" >CAST</Link>
             <Link to="reviews">REVIEWS</Link>
             </nav>
             <Outlet />

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getMovieCast } from "../api/api";
 import { useEffect, useState } from "react";
 
@@ -22,8 +22,11 @@ export default function MovieCast(params) {
        
      getData()
     }, [movieId])
+
+    const location = useLocation()
     
-    return (
+    return (<>
+        {/* <Link to={location.state}>Close</Link> */}
         <ul>
             {cast.map(({id, character, original_name, profile_path}) => (
                 <li key={id}>
@@ -34,6 +37,7 @@ export default function MovieCast(params) {
             ))}
 
         </ul>
+    </>
     )
     
 }

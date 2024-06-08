@@ -1,24 +1,26 @@
-export default function SearchBar({submit}) {
+export default function SearchBar({value, onChange}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const search = form.elements.search.value;
-         submit(search);
+         onChange(search);
     form.reset();
     }
 
 
     return (
         
-             <form onSubmit={handleSubmit} >
+             <form  onSubmit={handleSubmit}>
           <input
-            
+           name="search" 
       type="text"
       autoComplete="off"
       autoFocus
      placeholder="Search the best movies"
-    name='search'
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                
     />
                 <button type="submit">Search</button>
           

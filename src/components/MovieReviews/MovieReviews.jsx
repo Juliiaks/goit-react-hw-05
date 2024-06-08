@@ -1,6 +1,6 @@
 import { getMovieReviews } from "../api/api";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 
 export default function MovieReviews(params) {
     const { movieId } = useParams();
@@ -22,7 +22,12 @@ export default function MovieReviews(params) {
        
      getData()
     }, [movieId])
+
+const location = useLocation()
+
     return (
+        <>
+            {/* <Link to={location.state}>Close</Link> */}
         <ul>
             {reviews.map(({author, content, id, created_at}) => (
                 <li key={id}>
@@ -31,6 +36,7 @@ export default function MovieReviews(params) {
                     <p>{created_at}</p>
 </li>
             ))}
-        </ul>
+            </ul>
+        </>
     )
 }
