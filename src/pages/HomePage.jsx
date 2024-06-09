@@ -1,7 +1,10 @@
 import axios from "axios"
+// import MovieList from "../../components/MovieList/MoviesList
 import MovieList from "../components/MovieList/MoviesList"
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
+import css from "../components/MovieList/MovieList.module.css"
+
 
 export default function HomePage() {
     const [movies, setMovies] = useState([])
@@ -27,7 +30,7 @@ export default function HomePage() {
     
     return (
         <>
-            <p>Trending Movies</p>
+            <p className={css.homeMovies}>Trending Movies</p>
             <MovieList movies={movies}
             location={ location} 
             />

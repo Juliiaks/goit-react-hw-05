@@ -1,0 +1,34 @@
+.header{
+    width: 100vw;
+    height: 50px;
+    border-bottom: 1px solid #10c89d7d;
+    box-shadow: 0 5px 30px #10c89d51;
+    display: flex;
+    gap: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+.link{
+    color: #10C89E;
+    font-size: 20px;
+    border: 1px solid transparent;
+    padding: 5px 8px;
+    padding-top: 2px;
+
+}
+
+.link:hover, .link:focus{
+    border: 1px solid #10C89E;
+    /* padding: 5px 8px;
+    padding-top: 2px; */
+    border-radius: 15px;
+}
+
+.isActive{
+    background-color: #10C89E;
+    padding: 5px 8px;
+    padding-top: 2px;
+    color: #242424;
+    border-radius: 15px;
+}

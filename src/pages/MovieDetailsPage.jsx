@@ -1,6 +1,6 @@
 
 import { useParams, Link, Outlet, useLocation } from "react-router-dom"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getSingleMovieApi } from "../components/api/api";
 
 export default function MovieDetailsPage() {
@@ -25,10 +25,10 @@ export default function MovieDetailsPage() {
     
     const location = useLocation()
     console.log(location);
-    
+    const goBack = useRef(location.state ||"/")
     return (
         <div>
-            <Link to={location.state}> Go back</Link>
+            <Link to={goBack.current}> Go back</Link>
             {movie&&(<div>
                 <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
  <p>{movie.original_title}</p>

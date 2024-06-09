@@ -9,7 +9,7 @@ export default async function API( query ) {
         params:{
             query: query,
             // year: "2023",
-            primary_release_year: "2010"
+            // primary_release_year: "2020-2024"
         }
     })
     return response
