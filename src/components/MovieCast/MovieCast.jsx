@@ -1,6 +1,7 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { getMovieCast } from "../api/api";
 import { useEffect, useState } from "react";
+import css from "./movieCast.module.css"
 
 export default function MovieCast(params) {
      const { movieId } = useParams();
@@ -27,12 +28,12 @@ export default function MovieCast(params) {
     
     return (<>
         {/* <Link to={location.state}>Close</Link> */}
-        <ul>
+        <ul className={css.castlist}>
             {cast.map(({id, character, original_name, profile_path}) => (
-                <li key={id}>
-                    <img src={`https://image.tmdb.org/t/p/w500${profile_path}`} alt={original_name} />
-                    <p>{original_name}</p>
-                    <p>{ character}</p>
+                <li key={id} className={css.listitem}>
+                    <img src={`https://image.tmdb.org/t/p/w500${profile_path}`} alt={original_name} className={css.castimg} />
+                    <p className={css.name}>{original_name}</p>
+                    <p className={css.role}>{ character}</p>
 </li>
             ))}
 

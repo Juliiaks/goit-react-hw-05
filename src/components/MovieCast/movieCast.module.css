@@ -1,0 +1,28 @@
+.castimg{
+width: 200px;
+height: 300px;
+border-radius: 15px;
+box-shadow: 10px 7px 10px #10c89d25;
+}
+
+.castlist{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.listitem{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.name{
+    font-weight: 700;
+    color: #10C89E;
+    margin-bottom: 0;
+}
