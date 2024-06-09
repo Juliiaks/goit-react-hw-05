@@ -43,9 +43,9 @@ const [searchParams, setSearchParams] = useSearchParams()
     
     
     
-    const visibleMovies = movies.filter((movie) =>
-    movie.original_title.toLowerCase().includes(movieTitle.toLowerCase())
-    );
+    // const visibleMovies = movies.filter((movie) =>
+    // movie.original_title.toLowerCase().includes(movieTitle.toLowerCase())
+    // );
     
     const updateQueryString = (original_title) => {
     const nextParams = original_title !== "" ? { original_title } : {};
@@ -65,7 +65,7 @@ const [searchParams, setSearchParams] = useSearchParams()
 
             {error && <p>Ooops, it is an error</p>}
             
-            <MovieList movies={visibleMovies }
+            <MovieList movies={movies }
                 location={ location} />
         </>
     )
