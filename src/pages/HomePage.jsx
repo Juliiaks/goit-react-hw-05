@@ -37,9 +37,11 @@ export default function HomePage() {
     
     return (
         <>
+            <p className={css.homeMovies}>Trending Movies</p>
+
             {isLoading && <Loader />}
             {error && <p>Ooops, it is an error</p>}
-            <p className={css.homeMovies}>Trending Movies</p>
+
             <MovieList movies={movies}
             location={ location} 
             />

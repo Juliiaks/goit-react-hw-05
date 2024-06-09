@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import './App.css'
 import NavBar from "./components/Navigation/NavBar";
 import { Suspense, lazy } from "react";
+import Loader from "./components/loader/loader";
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const MoviePage = lazy(() => import('./pages/MoviesPage'))
@@ -22,7 +23,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader/>}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviePage />} />
