@@ -121,3 +121,14 @@ width: 800px;
     color: #242424;
     border-radius: 15px;
 }
+
+.backBtn{
+    width: 30px;
+    height: 30px;
+    color:#10C89E ;
+    margin-bottom: 15px;
+    border: 1px solid #10C89E;
+    padding: 8px;
+    border-radius: 25px;
+}
+

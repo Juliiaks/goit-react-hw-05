@@ -5,21 +5,28 @@ import { getSingleMovieApi } from "../components/api/api";
 // import css from "../pages/movieDetails"
 import css from "../components/Details/movieDetails.module.css"
 import clsx from "clsx";
+import Loader from "../components/loader/loader";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null)
     const [error, setError] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
             if (!movieId) return;
         const getData = async () => {
             try {
+                setIsLoading(true)
+                setError(false)
                 const response = await getSingleMovieApi(movieId)
                 setMovie(response.data)
             }
             catch (error) {
                 setError(true)
+            } finally {
+                setIsLoading(false)
             }
         }
        
@@ -32,7 +39,9 @@ export default function MovieDetailsPage() {
     
     return (
         <div className={css.container}>
-            <Link to={goBack.current}> Go back</Link>
+            <Link to={goBack.current} className={css.backlink}> <RiArrowGoBackFill className={css.backBtn} /></Link>
+            {isLoading && <Loader />}
+             {error && <p>Ooops, it is an error</p>}
             {movie&&(<div className={css.imgDescr}>
                 <img className={css.img} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
                 <div className={css.descr}>

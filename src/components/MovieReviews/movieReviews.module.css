@@ -1,0 +1,19 @@
+.list{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.listItem{
+    background: linear-gradient(to right, #62B19F, #0F2C26);
+    width: 900px;
+border-radius: 40px;
+padding-left: 20px;
+padding-right: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
