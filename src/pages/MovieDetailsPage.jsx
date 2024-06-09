@@ -1,7 +1,10 @@
 
-import { useParams, Link, Outlet, useLocation } from "react-router-dom"
+import { useParams, NavLink, Outlet, useLocation, Link } from "react-router-dom"
 import { useEffect, useRef, useState } from "react";
 import { getSingleMovieApi } from "../components/api/api";
+// import css from "../pages/movieDetails"
+import css from "../components/Details/movieDetails.module.css"
+import clsx from "clsx";
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
@@ -25,32 +28,56 @@ export default function MovieDetailsPage() {
     
     const location = useLocation()
     console.log(location);
-    const goBack = useRef(location.state ||"/")
+    const goBack = useRef(location.state || "/")
+    
     return (
-        <div>
+        <div className={css.container}>
             <Link to={goBack.current}> Go back</Link>
-            {movie&&(<div>
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
- <p>{movie.original_title}</p>
-                <h2>OVERVIEW</h2>
-                <p>{movie.overview}</p>
-                <h2>Average</h2>
-                <p>{movie.vote_average}</p>
-                <h2>Genres</h2>
-                <ul>
+            {movie&&(<div className={css.imgDescr}>
+                <img className={css.img} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
+                <div className={css.descr}>
+                    <p className={css.name}>{movie.original_title}</p>
+
+                    <div className={css.descrCont}>
+
+                        <ul className={css.descrList}>
+                        <li className={css.descrItem}>
+                            <h3 className={css.title}>OVERVIEW</h3>
+                                <p className={css.ovText}>{movie.overview}</p></li>
+                             <li className={css.descrItem}>
+                <h3 className={css.title}>Genres</h3>
+                <ul className={css.genres}>
                     {movie.genres.map(({ id, name }) => (
-                        <li key={id}>
-                           <p> {name}</p>
+                        <li key={id} className={css.gItem}>
+                           <p className={css.gtext}> {name}</p>
                         </li>
                     ))}
+                            </ul></li>
+                        </ul>
+
+                        <ul className={css.descrList}>
+                        <li className={css.descrItem}>
+                            <h3 className={css.title}>Average</h3>
+                            <p>{movie.vote_average}</p></li>
+                        
+                        <li className={css.descrItem}>
+                                <h3 className={css.title}>Popularity</h3>
+                                <p>{movie.popularity}</p>
+                        </li>
                 </ul>
-                 
+               
+                    </div>
+                 </div>
             </div>)
             }
 
-            <nav>
-            <Link to="cast" >CAST</Link>
-            <Link to="reviews">REVIEWS</Link>
+            <nav className={css.header}>
+            <NavLink to="cast" className={({ isActive }) => {
+                return clsx(css.link, isActive && css.isActive)
+        }}>CAST</NavLink>
+            <NavLink to="reviews" className={({ isActive }) => {
+                return clsx(css.link, isActive && css.isActive)
+        }}>REVIEWS</NavLink>
             </nav>
             <Outlet />
         </div>
